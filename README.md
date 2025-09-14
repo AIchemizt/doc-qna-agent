@@ -2,24 +2,42 @@
 
 This project is an AI agent that answers questions based on a collection of PDF documents. It uses a local vector database for document retrieval and the Gemini API for language understanding. It also includes a tool to search ArXiv for external papers.
 
+## Features
+
+-   **PDF Ingestion:** Processes multiple PDF documents from a local directory.
+-   **Vector Search:** Uses FAISS with local sentence-transformer embeddings to create a searchable knowledge base.
+-   **LLM Integration:** Leverages the Google Gemini API (`gemini-1.5-flash`) for question answering and reasoning.
+-   **Tool Usage (Bonus):** Integrates the ArXiv API as a callable tool for searching external academic papers.
+-   **Simple Router:** A keyword-based router directs queries to either the local document store or the ArXiv tool.
+
 ## Setup
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/AIchemizt/doc-qna-agent.git
     cd doc-qna-agent
     ```
 
-2.  **Create a virtual environment and install dependencies:**
+2.  **Create and activate a virtual environment:**
+    -   **macOS/Linux:**
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+    -   **Windows:**
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
+
+3.  **Install dependencies:**
     ```bash
-    python -m venv venv
-    source venv/bin/activate
     pip install -r requirements.txt
     ```
 
-3.  **Configure your API Key:**
-    - Create a `.env` file in the root directory.
-    - Add your Google Gemini API key to it:
+4.  **Configure your API Key:**
+    -   Create a `.env` file in the root directory.
+    -   Add your Google Gemini API key to it:
       ```
       GOOGLE_API_KEY="your_api_key_here"
       ```
@@ -28,7 +46,7 @@ This project is an AI agent that answers questions based on a collection of PDF 
 
 1.  **Add PDFs:** Place your PDF files inside the `docs/` directory.
 
-2.  **Ingest Documents:** Run the ingestion script once to build the vector database. This will take a few minutes.
+2.  **Build the Knowledge Base:** Run the ingestion script once. This processes the PDFs into a local FAISS vector store. This step can take a few minutes.
     ```bash
     python ingest.py
     ```
@@ -37,6 +55,6 @@ This project is an AI agent that answers questions based on a collection of PDF 
     ```bash
     python main.py
     ```
-    - To ask about your documents, just type your question.
-    - To search ArXiv, start your query with the keyword `arxiv`.
-    - Type `exit` to quit.
+    -   **To query your documents:** Just type your question.
+    -   **To search ArXiv:** Start your query with the keyword `arxiv`.
+    -   Type `exit` to quit.
