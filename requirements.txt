@@ -1,0 +1,8 @@
+langchain==0.2.7
+langchain-google-genai==1.0.10
+langchain_community==0.2.7
+python-dotenv==0.21.1
+pypdf==4.2.0
+faiss-cpu==1.8.0
+arxiv==2.1.0
+google-generativeai
